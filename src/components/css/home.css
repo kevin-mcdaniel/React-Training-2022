@@ -1,0 +1,11 @@
+.project{
+    display: flex;
+}
+
+.homeScreen{
+    padding:1rem;
+}
+
+.projImg{
+    margin-right: 1rem;
+}

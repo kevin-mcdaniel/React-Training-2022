@@ -1,0 +1,22 @@
+.rootHeader {
+    display: flex;
+    background-color: #000;
+    color:#fff;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    height:80px;
+    margin-right: 10px;
+}
+
+.logo div{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
