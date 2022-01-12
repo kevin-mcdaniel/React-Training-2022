@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Header from './components/Header';
 import CalculatorApp from './calculator/CalculatorApp';
 import ScoreboardApp from './scoreboard/ScoreboardApp';
+import InitiativeApp from './initiative/InitiativeApp';
 
 
 const App = () =>(
@@ -18,7 +19,8 @@ const App = () =>(
            
             <Route path="/" exact element={<Home />} />
             <Route path="/scoreboard" element={<ScoreboardApp />} />
-            <Route path="/calculator" element={<CalculatorApp></CalculatorApp>} />
+            <Route path="/calculator" element={<CalculatorApp />} />
+            <Route path="/initiative" element={<InitiativeApp />} />
           </>
         }
       </Routes>

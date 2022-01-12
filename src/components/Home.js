@@ -28,6 +28,13 @@ const Home = (props) => {
             </div>
         </div>
 
+        <div className='project'>
+            <Link to="/initiative" className="projImg"><img src={calculatorImg} alt="Calculator" /></Link>
+            <div>
+                <h1 className="projDesc"><Link to="/initiative">Initiative Tracker</Link></h1>
+                <p>Leaving the comfort of tutorials on my first personal react project.</p>
+            </div>
+        </div>
 
         </div>
     );
