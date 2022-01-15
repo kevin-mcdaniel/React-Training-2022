@@ -1,0 +1,10 @@
+.initiativeApp{
+    display:flex;
+}
+.initiativePanel{
+    width:25%
+} 
+
+.currentPlayer{
+    width:75%
+}

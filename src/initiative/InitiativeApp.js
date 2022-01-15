@@ -8,16 +8,37 @@ array.splice()? idea const changeValuePosition = (arr, init, target) => {[arr[in
 
 import React, { useState } from "react";
 import EncounterSelector from "./components/EncounterSelector.js";
+import CurrentPlayer from "./components/CurrentPlayer.js";
 import './components/data/playerData.js';
-const playerData = [
+import './components/css/initiativeApp.css'
+import InitiativePanel from "./components/InitiativePanel.js";
+
+const partyData = [
     {
         playerName: "Ibar",
         id:0,
         initRoll:0,
         initBonus: 2,
         statValue: 14,
-        buffs:[],
-        debuffs:[]
+        buffs:[
+            {
+                statusEffect:"+1 to AC",
+                duration:3,
+                remaining:3
+            },
+            {
+                statusEffect:"+1 to Hit",
+                duration:1,
+                remaining:1
+            }
+         ],
+        debuffs:[
+            {
+                statusEffect:"Blind",
+                duration:3,
+                remaining:3
+            }
+        ]
     },
     {
         playerName: "Siban",
@@ -89,7 +110,45 @@ const mobData = [
 
 const InitiativeApp = () =>{
 
-const [combatants, setCombatants ] = useState(playerData.concat(mobData));
+
+
+const [combatants, setCombatants ] = useState(partyData.concat(mobData));
+const [currentRound, setCurrentRound] = useState(0);
+const [playerData, setPlayerData] = useState({
+    playerName: "Ibar",
+    id:0,
+    initRoll:0,
+    initBonus: 2,
+    statValue: 14,
+    buffs:[
+        {
+            statusEffect:"+1 to AC",
+            duration:3,
+            remaining:3
+        },
+        {
+            statusEffect:"+1 to Hit",
+            duration:1,
+            remaining:1
+        }
+     ],
+    debuffs:[
+        {
+            statusEffect:"Blind",
+            duration:3,
+            remaining:3
+        }
+    ],
+    nextPlayer:"Siban"
+});
+
+const getPlayerData = (index, plusone) => {
+    let player = combatants[index];
+    player.nextPlayer = combatants[plusone].playerName;
+    return player;
+}
+
+
 
 const updateInitiative = (playerName, value) => {
     let updatedPlayers = combatants.map(
@@ -103,34 +162,20 @@ const addCombatants = newCombatants =>{
 }
 
 
+
+const advanceRound = currentIndex =>{
+    setCurrentRound(currentRound + 1);
+
+}
+
     return(
-       
-        <div className="initiative">
-        <div>Initiative</div>
-        
-        <ul>
-        
-            {
-                combatants.map((player, i)=>{
-                    return(
-                        <li key={i}>
-                            <span>{player.playerName} - Initiative:  {player.initRoll} </span>
-                            <button onClick={()=>{ updateInitiative(player.playerName, 10)}}>Edit</button>
-                        </li> 
-                    )           
-
-                    
-
-                })
-                
-
-            }
-        </ul>
-            <div>
-                <button>Add PC</button><button>Add NPC</button>
-            </div>
-            <EncounterSelector addCombatants={addCombatants} />
+       <div className="initiativeApp">
+            <InitiativePanel combatants={combatants} methods={{addCombatants,updateInitiative}}  />
+            
+            <CurrentPlayer playerData={playerData} />
+            
         </div>
+        
     )
 }
 

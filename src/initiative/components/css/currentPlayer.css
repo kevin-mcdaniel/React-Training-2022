@@ -1,0 +1,7 @@
+.statusEffects{
+    display: flex;
+}
+
+.statusEffects > div {
+    width:50%;
+}
