@@ -1,0 +1,27 @@
+.combatantInitiative{
+    list-style: none;
+    margin:0 1rem;
+    padding: 0;
+}
+
+.combatantInitiative li{
+    display: flex;
+    padding:.5rem;
+}
+
+.combatantInitiative li:nth-child(2n){
+    background: #ebebeb;
+}
+
+.combatantInitiative li.active{
+    background: #ccc;
+    font-weight: bold;
+}
+
+.combatantInitiative li div:first-child{
+    flex-grow: 2
+}
+
+.combatantInitiative li div:not(:first-child){
+    padding:0 .5rem;
+}

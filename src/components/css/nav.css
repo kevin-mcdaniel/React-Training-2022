@@ -19,5 +19,6 @@
 
   .rootNav .active{
     background-color:#61dafb;
+    background:linear-gradient(to bottom, #61dafb 0%, #61dafb 75%, #58c3e0 100%);
     color:#000;
   }

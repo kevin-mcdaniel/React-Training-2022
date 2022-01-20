@@ -6,4 +6,32 @@
 
 .statusList li{
     display: flex;
+    background: #ccc;
+    padding:1rem;
+    border-radius: 2px;
+}
+
+.statusList li div{
+    flex-grow: 2;
+}
+
+.statusList li div:not(:first-of-type){
+    text-align: right;
+}
+
+.statusList li:not(:last-of-type){
+    margin-bottom: .25rem;
+}
+
+.statusHeader{
+    display: flex;
+}
+
+.statusHeader div{
+    padding: .5rem 0;
+}
+
+.statusHeader div:first-of-type{
+    flex-grow: 2;
+    font-weight: bold;
 }

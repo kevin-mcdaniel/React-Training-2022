@@ -1,0 +1,13 @@
+.roundInfo{
+    margin:1rem;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    padding: .5rem;
+}
+
+
+.roundNumber{
+    text-align: center;
+    font-size: 2rem;
+}
+

@@ -8,16 +8,17 @@ const StatusEffect = ({statusType, statusList}) => {
 return(
 
         <div>
-            <div>{ getHeader(statusType) }</div>
-            <div>{addButton(statusType)}</div>
-            
+            <div className="statusHeader">
+                <div>{ getHeader(statusType) }</div>
+                <div>{ addButton(statusType) }</div>
+            </div>
             <ul className="statusList">
                 {
                     statusList.map(({statusEffect, duration},i)=>{
                         return(
                             <li key={i}>
                                 <div>{statusEffect}</div>
-                                <div>Rounds Remaining: {duration}</div>
+                                <div>{duration}</div>
                             </li>
                         )
                     })

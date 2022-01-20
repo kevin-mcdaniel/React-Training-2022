@@ -1,7 +1,9 @@
 .statusEffects{
     display: flex;
+     margin:0 1rem;
 }
 
 .statusEffects > div {
-    width:50%;
+    flex-grow:2;
+    margin:0 .5rem;
 }

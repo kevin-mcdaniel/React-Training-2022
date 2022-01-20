@@ -170,7 +170,7 @@ const advanceRound = currentIndex =>{
 
     return(
        <div className="initiativeApp">
-            <InitiativePanel combatants={combatants} methods={{addCombatants,updateInitiative}}  />
+            <InitiativePanel combatants={combatants} methods={{addCombatants,updateInitiative}} currentPlayer={playerData}  />
             
             <CurrentPlayer playerData={playerData} />
             

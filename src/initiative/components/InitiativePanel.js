@@ -1,20 +1,24 @@
 import React from "react";
 import EncounterSelector from "./EncounterSelector";
+import "./css/initiativePanel.css";
 
 
 
-const InitiativePanel = ({combatants, methods}) => {
+const InitiativePanel = ({combatants, methods, currentPlayer}) => {
+    
     return(
         <div className="initiativePanel">
             <div>Initiative</div>
-            
-            <ul>
+            <ul className="combatantInitiative">
             
                 {
+                    
                     combatants.map((player, i)=>{
+                        
                         return(
-                            <li key={i}>
-                                <span>{player.playerName} - Initiative:  {player.initRoll} </span>
+                            <li key={i} className={currentPlayer.playerName === player.playerName ? "active" : ""}>
+                                <div>{player.playerName}</div>
+                                <div>{player.initRoll} </div>
                                 <button onClick={()=>{ methods.updateInitiative(player.playerName, 10)}}>Edit</button>
                             </li> 
                         )           
