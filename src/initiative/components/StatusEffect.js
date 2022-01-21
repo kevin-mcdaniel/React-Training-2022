@@ -14,11 +14,11 @@ return(
             </div>
             <ul className="statusList">
                 {
-                    statusList.map(({statusEffect, duration},i)=>{
+                    statusList.map(({statusEffect, remaining},i)=>{
                         return(
                             <li key={i}>
                                 <div>{statusEffect}</div>
-                                <div>{duration}</div>
+                                <div>{remaining}</div>
                             </li>
                         )
                     })

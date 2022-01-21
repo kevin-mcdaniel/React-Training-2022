@@ -109,11 +109,10 @@ const mobData = [
 
 
 const InitiativeApp = () =>{
-
-
-
 const [combatants, setCombatants ] = useState(partyData.concat(mobData));
 const [currentRound, setCurrentRound] = useState(0);
+const [playerIndex, setPlayerIndex] = useState(1);
+const [currentPlayer, setCurrentPlayer] = useState({...combatants[0], nextPlayer:combatants[1].playerName});
 const [playerData, setPlayerData] = useState({
     playerName: "Ibar",
     id:0,
@@ -142,10 +141,29 @@ const [playerData, setPlayerData] = useState({
     nextPlayer:"Siban"
 });
 
-const getPlayerData = (index, plusone) => {
-    let player = combatants[index];
-    player.nextPlayer = combatants[plusone].playerName;
-    return player;
+
+
+const getNextPlayer = () => {
+    let nextPlayerIndex = playerIndex + 1 < combatants.length - 1 ? playerIndex + 1 : 0; 
+    setCurrentPlayer({...combatants[playerIndex], nextPlayer: combatants[nextPlayerIndex].playerName});
+}
+
+const decrementStatusEffect = () =>{
+    combatants[playerIndex].buffs.forEach((statusEffect, i) => {
+        if(statusEffect.remaining - 1 === 0){
+            combatants[playerIndex].buffs.splice(i, 1);
+        } else {
+            statusEffect.remaining -= 1;
+        }
+    });
+
+    combatants[playerIndex].debuffs.forEach((statusEffect, i) => {
+        if(statusEffect.remaining - 1 === 0){
+            combatants[playerIndex].debuffs.splice(i, 1);
+        } else {
+            statusEffect.remaining -= 1;
+        }
+    });
 }
 
 
@@ -164,15 +182,29 @@ const addCombatants = newCombatants =>{
 
 
 const advanceRound = currentIndex =>{
-    setCurrentRound(currentRound + 1);
+    decrementStatusEffect();
+
+    if (playerIndex < combatants.length - 1){
+        setPlayerIndex(playerIndex + 1);
+        
+    } else {
+        setPlayerIndex(0)
+    }
+    
+    getNextPlayer();
+    
+    
+    if(playerIndex === 0){
+        setCurrentRound(currentRound + 1) 
+    }
 
 }
 
     return(
        <div className="initiativeApp">
-            <InitiativePanel combatants={combatants} methods={{addCombatants,updateInitiative}} currentPlayer={playerData}  />
+            <InitiativePanel combatants={combatants} methods={{addCombatants,updateInitiative,advanceRound}} currentPlayer={currentPlayer}  />
             
-            <CurrentPlayer playerData={playerData} />
+            <CurrentPlayer playerData={currentPlayer} currentRound={currentRound} />
             
         </div>
         

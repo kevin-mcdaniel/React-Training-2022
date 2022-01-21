@@ -3,12 +3,12 @@ import RoundPanel from "./RoundPanel";
 import PlayerName from "./PlayerName";
 import './css/currentPlayerHeader.css';
 
-const CurrentPlayerHeader = ({playerName, nextPlayer}) => {
+const CurrentPlayerHeader = ({playerName, nextPlayer, currentRound}) => {
     return(
         <div className="playerHeader">
             <PlayerName playerName={playerName} nextPlayer={nextPlayer} />
             
-            <RoundPanel currentRound="1" />
+            <RoundPanel currentRound={currentRound} />
             
         </div>
     )

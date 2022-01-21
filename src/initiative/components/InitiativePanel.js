@@ -1,6 +1,7 @@
 import React from "react";
 import EncounterSelector from "./EncounterSelector";
 import "./css/initiativePanel.css";
+import Combatants from "./Combatants";
 
 
 
@@ -31,9 +32,10 @@ const InitiativePanel = ({combatants, methods, currentPlayer}) => {
                 }
             </ul>
                 <div>
-                    <button>Add PC</button><button>Add NPC</button>
+                    <button onClick={methods.advanceRound}>Next Turn</button>
                 </div>
                 <EncounterSelector  addCombatants={methods.addCombatants} />
+                <Combatants />
             </div>
     )
 }
