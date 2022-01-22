@@ -35,3 +35,23 @@
     flex-grow: 2;
     font-weight: bold;
 }
+
+
+
+.fields{
+    display: flex;
+}
+
+.field{
+    margin-right: 1em;
+}
+
+.field:last-of-type{
+    margin-right: unset;
+}
+
+.field label{
+    display: block;
+    font-weight: bold;
+    font-size: .8rem;
+}

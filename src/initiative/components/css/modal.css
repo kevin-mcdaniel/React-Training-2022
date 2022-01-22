@@ -1,0 +1,48 @@
+.modal{
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;  
+    pointer-events: none;
+}
+
+
+
+
+
+.modalContent{
+    width:calc(100% - 10px);
+    max-width:500px;
+    background-color: #fff;
+}
+
+.modalHeader, .modalFooter{
+    padding:10px;
+}
+
+.modalTitle{
+    margin:0;
+}
+
+.modalBody{
+    padding:10px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.modal.enter-done{
+    opacity:1;
+    pointer-events: visible;
+}
+
+.modal.exit{
+    opacity: 0;
+}
+

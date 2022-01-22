@@ -1,16 +1,16 @@
-/*
+/* 
+~~~-----------------------------------------------
 TODOs
 Need a way to delay in a turn
-array.splice()? idea const changeValuePosition = (arr, init, target) => {[arr[init],arr[target]] = [arr[target],arr[init]]; return arr}
-
-
-*/
+~~~-----------------------------------------------
+*/ 
 
 import React, { useState } from "react";
+import Modal from "./components/Modal";
 import EncounterSelector from "./components/EncounterSelector.js";
 import CurrentPlayer from "./components/CurrentPlayer.js";
-import './components/data/playerData.js';
-import './components/css/initiativeApp.css'
+import "./components/data/playerData.js";
+import "./components/css/initiativeApp.css";
 import InitiativePanel from "./components/InitiativePanel.js";
 
 const partyData = [
@@ -109,6 +109,9 @@ const mobData = [
 
 
 const InitiativeApp = () =>{
+
+const [show, setShow] = useState(false);
+
 const [combatants, setCombatants ] = useState(partyData.concat(mobData));
 const [currentRound, setCurrentRound] = useState(0);
 const [playerIndex, setPlayerIndex] = useState(1);
@@ -201,11 +204,16 @@ const advanceRound = currentIndex =>{
 }
 
     return(
-       <div className="initiativeApp">
+       <div id="initiative" >
+            <div className="initiativeApp">
             <InitiativePanel combatants={combatants} methods={{addCombatants,updateInitiative,advanceRound}} currentPlayer={currentPlayer}  />
             
             <CurrentPlayer playerData={currentPlayer} currentRound={currentRound} />
-            
+            </div>
+            <button onClick={() => setShow(true)}>Show Modal</button>
+            <Modal onClose={() => setShow(false)} show={show} title="This is the modal title">
+                <p>This is content in the modal body</p>
+            </Modal>
         </div>
         
     )

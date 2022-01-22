@@ -35,7 +35,6 @@ const InitiativePanel = ({combatants, methods, currentPlayer}) => {
                     <button onClick={methods.advanceRound}>Next Turn</button>
                 </div>
                 <EncounterSelector  addCombatants={methods.addCombatants} />
-                <Combatants />
             </div>
     )
 }
