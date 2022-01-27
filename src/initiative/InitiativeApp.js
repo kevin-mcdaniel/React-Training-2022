@@ -6,7 +6,6 @@ Need a way to delay in a turn
 */ 
 
 import React, { useState } from "react";
-import Modal from "./components/Modal";
 import EncounterSelector from "./components/EncounterSelector.js";
 import CurrentPlayer from "./components/CurrentPlayer.js";
 import "./components/data/playerData.js";
@@ -23,19 +22,16 @@ const partyData = [
         buffs:[
             {
                 statusEffect:"+1 to AC",
-                duration:3,
                 remaining:3
             },
             {
                 statusEffect:"+1 to Hit",
-                duration:1,
                 remaining:1
             }
          ],
         debuffs:[
             {
                 statusEffect:"Blind",
-                duration:3,
                 remaining:3
             }
         ]
@@ -110,7 +106,6 @@ const mobData = [
 
 const InitiativeApp = () =>{
 
-const [show, setShow] = useState(false);
 
 const [combatants, setCombatants ] = useState(partyData.concat(mobData));
 const [currentRound, setCurrentRound] = useState(0);
@@ -149,6 +144,19 @@ const [playerData, setPlayerData] = useState({
 const getNextPlayer = () => {
     let nextPlayerIndex = playerIndex + 1 < combatants.length - 1 ? playerIndex + 1 : 0; 
     setCurrentPlayer({...combatants[playerIndex], nextPlayer: combatants[nextPlayerIndex].playerName});
+}
+
+const addStatusEffect = (playerID, buffType, statusEffect) =>{
+    let combatantIndex = combatants.findIndex(element => element.id === playerID);
+    
+    if(buffType === "buff")
+    {
+        console.log(statusEffect)
+        combatants[combatantIndex].buffs.push(statusEffect)
+    } else {
+        combatants[combatantIndex].debuffs.push(statusEffect)
+    }
+    
 }
 
 const decrementStatusEffect = () =>{
@@ -208,12 +216,9 @@ const advanceRound = currentIndex =>{
             <div className="initiativeApp">
             <InitiativePanel combatants={combatants} methods={{addCombatants,updateInitiative,advanceRound}} currentPlayer={currentPlayer}  />
             
-            <CurrentPlayer playerData={currentPlayer} currentRound={currentRound} />
+            <CurrentPlayer playerData={currentPlayer} currentRound={currentRound} methods={{addStatusEffect, advanceRound}} />
             </div>
-            <button onClick={() => setShow(true)}>Show Modal</button>
-            <Modal onClose={() => setShow(false)} show={show} title="This is the modal title">
-                <p>This is content in the modal body</p>
-            </Modal>
+            
         </div>
         
     )

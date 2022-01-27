@@ -1,19 +1,17 @@
 import React, {useState} from "react";
 import './css/statusEffect.css';
 import Modal from "./Modal";
-
+//Going to move buff/debuff buttons/modal to initiative component instead of player component
 
 const StatusEffect = ({statusType, statusList}) => {
-    const [show, setShow] = useState(false);
-    const buffText = (statusType === "buff") ? "Buff" : "Debuff";
-    return(
+    if(statusList.length){
+        return(
 
             <div>
+                
                 <div className="statusHeader">
-                    <div>Current {buffText}s</div>
-                    <div>
-                        <button onClick={() => setShow(true)}>Add {buffText}</button>
-                    </div>
+                    <div>Current {(statusType === "buff") ? "Buff" : "Debuff"}s</div>
+                    
                 </div>
                 <ul className="statusList">
                     {
@@ -28,21 +26,13 @@ const StatusEffect = ({statusType, statusList}) => {
 
                     }
                 </ul>
-                <Modal onClose={() => setShow(false)} show={show} title={`Add ${buffText}`}>
-                    <div className="fields">
-                        <div className="field">
-                            <label>Effect:</label>
-                            <input type="text" name="effect" />
-                        </div>
-                        <div className="field">
-                            <label>Duration:</label>
-                            <input type="text" name="duration" />
-                        </div>
-                        <button>Add {buffText}</button>
-                    </div>
-                </Modal>
+                
             </div>
         )
+    } else {
+        return <></>
+    }
+    
     
 }
 
